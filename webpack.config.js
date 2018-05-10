@@ -8,11 +8,12 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js'
   },
+  devtool: 'source-map',
   context: __dirname,
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
-  modules: {
+  module: {
     loaders: [
       {
         test: /jsx?$/,
@@ -20,6 +21,7 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ['react', 'es2015']
+        }
       },
       {
         test: /\.scss?$/,

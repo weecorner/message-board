@@ -3,6 +3,8 @@ import React from 'react'
 import {render} from 'react-dom'
 
 render (
-  <h1>Messages</h1>,
+  <div>
+    <h1>Messages</h1>
+  </div>,
   document.getElementById('main')
 )
