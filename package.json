@@ -1,0 +1,45 @@
+{
+  "name": "MESSAGE_BOARD_APP",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple message board.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.test.js *.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/weecorner/message-board.git"
+  },
+  "keywords": [
+    "react",
+    "redux"
+  ],
+  "author": "Jing Wang",
+  "licence": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/weecorner/message-board/issues"
+  },
+  "homepage": "https://github.com/weecorner/message-board#readme",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.2",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "mocha": "^5.1.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "sinon": "^5.0.7",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.1"
+  }
+}
