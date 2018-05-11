@@ -1,0 +1,2 @@
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const RECEIVE_POST = 'RECEIVE_POST';

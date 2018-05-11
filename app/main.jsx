@@ -1,10 +1,14 @@
 'use strict'
 import React from 'react'
 import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+
+import store from './store'
+import Root from './routes'
 
 render (
-  <div>
-    <h1>Messages</h1>
-  </div>,
+  <Provider store={store}>
+    <Root/>
+  </Provider>,
   document.getElementById('main')
 )
