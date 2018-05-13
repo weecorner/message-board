@@ -4,8 +4,6 @@ import {
   RECEIVE_REPLY
 } from '../constants'
 
-import {hashHistory} from 'react-router';
-
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
   posts
@@ -18,19 +16,17 @@ export const receivePost = post => ({
 
 export const getPostById = postId => {
   return (dispatch, getState) => {
-    const post = getState().list.find((post) => {
+    const post = getState().posts.find((post) => {
       post.id === postId;
     });
     dispatch(receivePost(post));
-    hashHistory.push(`/posts/${postId}`);
   }
 };
 
 export const addNewPost = post => {
   return (dispatch, getState) => {
-    const newListOfPosts = getState().list.concat([post]);
+    const newListOfPosts = getState().posts.concat([post]);
     dispatch(receivePosts(newListOfPosts));
-    hashHistory.push(`/posts/${post.id}`);
   }
 };
 
@@ -41,6 +37,5 @@ export const addReply = reply => {
     const newReplies = replies.concat([reply]);
     const newSelectedPost = Object.assign({}, selectedPost, {replies: newReplies});
     dispatch(receivePost(newSelectedPost));
-    hashHistory.push(`/posts/${post.id}`);
   }
 };
