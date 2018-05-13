@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom'
 import uuidv1 from 'uuid'
 import moment from 'moment'
 import {addNewPost} from '../action-creators/posts'
+import FormErrors from './FormErrors'
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -21,26 +22,39 @@ class NewPost extends Component {
       user: '',
       comments: [],
       createdTime: '',
-      updatedTime: ''
+      updatedTime: '',
+      formErrors: {title: '', message: '', user: ''},
+      fieldValid: false,
+      disabled: false
     };
 
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleMessageChange = this.handleMessageChange.bind(this);
-    this.handleUserChange = this.handleUserChange.bind(this);
+    this.handleUserInput = this.handleUserInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.validateField = this.validateField.bind(this);
   }
 
-  handleTitleChange(event) {
-    this.setState({title: event.target.value});
+  handleUserInput(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({[name]: value},
+      () => {this.validateField(name, value)}
+    );
   }
 
-  handleMessageChange(event) {
-    this.setState({message: event.target.value});
-  }
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let fieldValid = this.state.fieldValid;
+    let formDisabled = this.state.disabled;
+    console.log(formDisabled, 'formDisabled');
 
-  handleUserChange(event) {
-    this.setState({user: event.target.value});
+    fieldValid = value.length < 10 ;
+    fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 10 characters';
+    formDisabled = Object.keys(fieldValidationErrors).every((fieldName, i) => {
+      return fieldValidationErrors[fieldName].length === 0;
+    });
+    
+    this.setState({formErrors: fieldValidationErrors, fieldValid: fieldValid, disabled: !formDisabled},);
   }
 
   handleCancel(event) {
@@ -52,7 +66,10 @@ class NewPost extends Component {
       user: '',
       comments: [],
       createdTime: '',
-      updatedTime: ''
+      updatedTime: '',
+      formErrors: {title: '', message: '', user: ''},
+      fieldValid: false,
+      disabled: false
     });
   }
 
@@ -66,7 +83,10 @@ class NewPost extends Component {
       user: this.state.user,
       comments: [],
       createdTime: timeToFormat,
-      updatedTime: timeToFormat
+      updatedTime: timeToFormat,
+      formErrors: this.state.formErrors,
+      fieldValid: this.state.fieldValid,
+      disabled: this.state.disabled
     };
     this.props.addNewPost(post);
     this.props.history.push('/posts');
@@ -77,26 +97,33 @@ class NewPost extends Component {
       user: '',
       comments: [],
       createdTime: '',
-      updatedTime: ''
+      updatedTime: '',
+      formErrors: {title: '', message: '', user: ''},
+      fieldValid: false,
+      disabled: false
     });
   }
 
   render() {
+
     return (
       <div>
+        <div className="panel panel-default">
+          <FormErrors formErrors={this.state.formErrors} />
+        </div>
         <form className="form-horizontal" onSubmit = {this.handleSubmit}>
           <fieldset>
             <legend>Create a new post</legend>
             <div className="form-group">
-              <lable className="col-xs-4 control-lable">Title</lable>
-              <div>
-                <input
-                  className="form-control"
-                  type="text"
-                  onChange= {this.handleTitleChange}
-                  value={this.state.title}
-                />
-              </div>
+              <lable className="col-xs-4 form-control-label">Title</lable>
+              <input
+                className="form-control"
+                type="text"
+                name="title"
+                onChange= {this.handleUserInput}
+                value={this.state.title}
+                required="true"
+              />
             </div>
             <div className="form-group">
               <lable className="col-xs-4 control-lable">Message</lable>
@@ -104,8 +131,10 @@ class NewPost extends Component {
                 <input
                   className="form-control"
                   type="text"
-                  onChange= {this.handleMessageChange}
+                  name="message"
+                  onChange= {this.handleUserInput}
                   value={this.state.message}
+                  required="true"
                 />
               </div>
             </div>
@@ -115,14 +144,16 @@ class NewPost extends Component {
                 <input
                   className="form-control"
                   type="text"
-                  onChange= {this.handleUserChange}
+                  name="user"
+                  onChange= {this.handleUserInput}
                   value={this.state.user}
+                  required="true"
                 />
               </div>
             </div>
             <div>
               <button onClick={this.handleCancel}>Clear</button>
-              <button type='submit'>Create Post</button>
+              <button type='submit' disabled={this.state.disabled}>Create Post</button>
             </div>
           </fieldset>
         </form>
