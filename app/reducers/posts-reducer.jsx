@@ -5,23 +5,24 @@ import {
 
 const initialState = {
   post: {},
-  posts: [{
-    id: 1,
-    title: "title one",
-    message: "text text text text text",
-    user: "user one",
-    comments: ["first comment", "second comment"],
-    createdTime: "05/12/18 @3:22pm",
-    updatedTime: "05/12/18 @3:22pm"
-  }, {
-    id: 2,
-    title: "title two",
-    message: "text text text text text text text text text",
-    user: "user two",
-    comments: ["first comment", "second comment", "third comment"],
-    createdTime: "05/12/18 @3:22pm",
-    updatedTime: "05/12/18 @3:22pm"
-  }]
+  // posts: [{
+  //   id: 1,
+  //   title: "title one",
+  //   message: "text text text text text",
+  //   user: "user one",
+  //   comments: ["first comment", "second comment"],
+  //   createdTime: "05/12/18 @3:22pm",
+  //   updatedTime: "05/12/18 @3:22pm"
+  // }, {
+  //   id: 2,
+  //   title: "title two",
+  //   message: "text text text text text text text text text",
+  //   user: "user two",
+  //   comments: ["first comment", "second comment", "third comment"],
+  //   createdTime: "05/12/18 @3:22pm",
+  //   updatedTime: "05/12/18 @3:22pm"
+  // }]
+  posts: []
 };
 
 const rootReducer = (state = initialState, action) => {
