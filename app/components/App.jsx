@@ -5,7 +5,7 @@ import PostContainer from './PostContainer'
 import NewPostContainer from './NewPostContainer'
 
 const App = () => (
-  <div className="background">
+  <div className="container">
     <Switch>
       <Route exact path='/posts' component={PostsContainer} />
       <Route path='/posts/:id' component={PostContainer} />

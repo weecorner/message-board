@@ -15,21 +15,34 @@ const mapDispatchToProps = dispatch => {
 };
 
 const Posts = ({ posts, selectPost }) => (
-    <div>
-    <h2>The Fairygodboss Message Board</h2>
+  <div className="message-board">
+    <h2 className="text-center">The Fairygodboss Message Board</h2>
+    <ul className="postlist list-group">
     {
       posts.length === 0 && 
-      <h4>There are currently no posts...add one!</h4>
+      <li><div className="no-post"><span className="no-post-message">There are currently no posts...add one!</span></div></li>
     }
     {
       posts && posts.map(post => (
-        <li className="list-group-item" key={post.id}>
-          <h4>{`${post.title} ${post.message}`}</h4>
-          <h5>{`Posted By: ${post.user}`}</h5><Link to={`/posts/${post.id}`} onClick={() => selectPost(post)}>{`${post.comments.length} Comments`}</Link><h5>{`Last Update: ${post.updatedTime}`}</h5>
+        <li className="list-group-item post" key={post.id}>
+          <div className="post-item">
+            <div>
+              <h4 className="title">{`${post.title}: `}</h4><h4 className="message">{post.message}</h4>
+            </div>
+            <p className="user">{`Posted By: ${post.user}`}</p>
+            <span className="comments"><Link to={`/posts/${post.id}`} onClick={() => selectPost(post)}>{`${post.comments.length} Comments`}</Link></span>
+            <p className="updated-time">{`Last Update: ${post.updatedTime}`}</p>
+          </div>
+          <span><Link to={`/posts/${post.id}`} onClick={() => selectPost(post)}>
+            <div className="triangle-right"></div>
+          </Link></span>
         </li>
       ))
     }
-    <button><Link to="/new-post">Create new post</Link></button>
+    </ul>
+    <div class="post-div">
+      <button class="post-button"><Link to="/new-post">Create new post</Link></button>
+    </div>
   </div>
 );
 

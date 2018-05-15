@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import uuidv1 from 'uuid'
 import moment from 'moment'
 import {addNewPost} from '../action-creators/posts'
@@ -107,14 +107,14 @@ class NewPost extends Component {
 
     return (
       <div>
-        <div className="panel panel-default">
+        <div className="warning">
           <FormErrors formErrors={this.state.formErrors} />
         </div>
         <form className="form-horizontal" onSubmit = {this.handleSubmit}>
           <fieldset>
             <legend>Create a new post</legend>
             <div className="form-group">
-              <lable className="col-xs-4 form-control-label">Title</lable>
+              <label className="form-control-label">Title</label>
               <input
                 className="form-control"
                 type="text"
@@ -125,20 +125,20 @@ class NewPost extends Component {
               />
             </div>
             <div className="form-group">
-              <lable className="col-xs-4 control-lable">Message</lable>
+              <label className="form-control-label">Message</label>
               <div>
-                <input
+                <textarea
                   className="form-control"
-                  type="text"
+                  rows="4"
                   name="message"
                   onChange= {this.handleUserInput}
                   value={this.state.message}
                   required="true"
-                />
+                ></textarea>
               </div>
             </div>
             <div className="form-group">
-              <lable className="col-xs-4 control-lable">User</lable>
+              <label className="form-control-label">User</label>
               <div>
                 <input
                   className="form-control"
@@ -150,9 +150,9 @@ class NewPost extends Component {
                 />
               </div>
             </div>
-            <div>
-              <button onClick={this.handleCancel}>Clear</button>
-              <button type='submit' disabled={this.state.disabled}>Create Post</button>
+            <div className="button-div">
+              <button className="clear-button" onClick={this.handleCancel}><Link to="/posts">Cancel</Link></button>
+              <button className="create-button" type='submit' disabled={this.state.disabled}>Create Post</button>
             </div>
           </fieldset>
         </form>

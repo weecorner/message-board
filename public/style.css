@@ -1,13 +1,260 @@
-html, body, #main, .background {
+html, body, #main {
   width: 100%;
   height: 100%;
   background:rgba(255,255,255,0.5);
 }
 
-.background {
-  background-color: #f8f8f8;
+.container {
+  margin: auto;
+  width: 90%;
+  height: 90%;
+  border: 2px solid lightgrey;
+  padding: 20px;
+  margin: 20px;
 }
 
-.container {
-  margin-top: 15%; 
+.message-board {
+  height: 100%;
+  padding: 10px;
 }
+
+button {
+  border: 2px solid lightgrey;
+  width: 10em;
+  background-color: #eff0f1;
+}
+
+.no-post {
+  height: 45vh;
+  line-height: 45vh;
+  text-align: center;
+}
+
+.no-reply {
+  height: 25vh;
+  line-height: 25vh;
+  text-align: center;
+}
+
+.postlist {
+  height: 45vh;
+}
+
+.replylist {
+  height: 25vh;
+}
+
+.no-post-message {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.post {
+  margin: 3vh 2vw;
+  border: 2px solid lightgrey;
+  min-height: 6em;
+}
+
+.user {
+  float: left;
+}
+
+.title {
+  text-transform: capitalize;
+  display: inline;
+}
+
+.message {
+  display: inline;
+}
+
+.post-div {
+  height: 25vh;
+}
+
+.post-button {
+  margin-top: 7em;
+}
+
+a {
+  color: rgb(51,51,51);
+}
+
+.warning {
+  color: rgb(162, 52, 178);
+  height: 11vh;
+  line-height: 0.8;
+}
+
+.form-control-label {
+  font-weight: bold;
+}
+
+legend {
+  text-align: center;
+  border: none;
+}
+
+.form-horizontal .form-group {
+  margin: 15px 0;
+}
+
+.form-control {
+  border: 2px solid lightgrey;
+}
+
+.button-div {
+  margin-top: 12vh;
+}
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+}
+
+.reply {
+  border: 2px lightgrey;
+  border-style: dashed none none none;
+}
+
+li.list-group-item.reply:nth-child(2) {
+  border-top: none;
+}
+
+.list-group.replylist {
+  max-height: 25vh;
+  overflow: scroll;
+  margin-bottom: 0;
+}
+
+.list-group.postlist {
+  max-height: 45vh;
+  overflow: scroll;
+  margin-bottom: 0;
+}
+
+hr.solid {
+  border-top: 2px solid lightgrey;
+}
+
+hr.dashed {
+  border-top: 2px dashed lightgrey;
+}
+
+@media(min-width: 992px) {
+  .comments {
+    padding-left: 2em;
+  }
+
+  .updated-time {
+    float: right;
+  }
+
+  .created-time {
+    display: inline;
+  }
+
+  .post-button {
+    bottom: 8em;
+    right: 8em;
+  }
+
+  .post-div {
+    text-align: right;
+  }
+
+  .button-div, .back-to-posts {
+    float: right;
+  }
+
+  .clear-button {
+    margin-right: 2em;
+  }
+
+  .reply-content {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .reply-button {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+  }
+
+  div.back-to-posts-div {
+    display: none;
+  }
+
+  .triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 50px solid lightgrey;
+    border-bottom: 25px solid transparent;
+    display: inline-block;
+    margin-left: 2em;
+  }
+
+  .post-item {
+    display: inline-block;
+    width: 87%;
+  }
+}
+
+@media(max-width: 991px) {
+  .comments {
+    float: right;
+  }
+
+  .updated-time {
+    display: none;
+  }
+
+  .post-div {
+    text-align: center;
+  }
+
+  .form-control-label {
+    text-align: center;
+    width: 100%;
+  }
+
+  .clear-button {
+    float: left;
+  }
+
+  .create-button {
+    float: right;
+  }
+
+  .form-group.no-margin {
+    margin: 0;
+  }
+
+  .list-group.replylist {
+    max-height: 10vh;
+  }
+
+  .reply-button {
+    width: 100%;
+    margin-top: 1.5em;
+  }
+
+  .back-to-posts-button {
+    width: 100%;
+  }
+
+  .reply-post {
+    width: 100%;
+  }
+
+  .back-to-posts {
+    display: none;
+  }
+
+  .triangle-right {
+    display: none;
+  }
+}
+

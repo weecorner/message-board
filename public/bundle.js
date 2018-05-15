@@ -6699,7 +6699,7 @@ var NewPost = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'panel panel-default' },
+          { className: 'warning' },
           _react2.default.createElement(_FormErrors2.default, { formErrors: this.state.formErrors })
         ),
         _react2.default.createElement(
@@ -6717,8 +6717,8 @@ var NewPost = function (_Component) {
               'div',
               { className: 'form-group' },
               _react2.default.createElement(
-                'lable',
-                { className: 'col-xs-4 form-control-label' },
+                'label',
+                { className: 'form-control-label' },
                 'Title'
               ),
               _react2.default.createElement('input', {
@@ -6734,16 +6734,16 @@ var NewPost = function (_Component) {
               'div',
               { className: 'form-group' },
               _react2.default.createElement(
-                'lable',
-                { className: 'col-xs-4 control-lable' },
+                'label',
+                { className: 'form-control-label' },
                 'Message'
               ),
               _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement('input', {
+                _react2.default.createElement('textarea', {
                   className: 'form-control',
-                  type: 'text',
+                  rows: '4',
                   name: 'message',
                   onChange: this.handleUserInput,
                   value: this.state.message,
@@ -6755,8 +6755,8 @@ var NewPost = function (_Component) {
               'div',
               { className: 'form-group' },
               _react2.default.createElement(
-                'lable',
-                { className: 'col-xs-4 control-lable' },
+                'label',
+                { className: 'form-control-label' },
                 'User'
               ),
               _react2.default.createElement(
@@ -6774,15 +6774,19 @@ var NewPost = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'button-div' },
               _react2.default.createElement(
                 'button',
-                { onClick: this.handleCancel },
-                'Clear'
+                { className: 'clear-button', onClick: this.handleCancel },
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/posts' },
+                  'Cancel'
+                )
               ),
               _react2.default.createElement(
                 'button',
-                { type: 'submit', disabled: this.state.disabled },
+                { className: 'create-button', type: 'submit', disabled: this.state.disabled },
                 'Create Post'
               )
             )
@@ -20629,7 +20633,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    { className: 'background' },
+    { className: 'container' },
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
@@ -20857,47 +20861,73 @@ var Post = function (_Component) {
         'div',
         null,
         _react2.default.createElement(
-          'h4',
-          null,
-          this.props.post.title + ' ' + this.props.post.message
+          'h2',
+          { className: 'title' },
+          this.props.post.title
         ),
         _react2.default.createElement(
-          'h5',
-          null,
-          'By: ' + this.props.post.user
-        ),
-        _react2.default.createElement(
-          'h5',
-          null,
-          ' On: ' + this.props.post.createdTime
-        ),
-        _react2.default.createElement(
-          'button',
+          'div',
           null,
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/posts' },
-            'Back to Posts'
+            'h5',
+            { className: 'message' },
+            'By: ' + this.props.post.user
+          ),
+          _react2.default.createElement(
+            'h5',
+            { className: 'created-time' },
+            ' On: ' + this.props.post.createdTime
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'back-to-posts' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/posts' },
+              'Back to Posts'
+            )
           )
         ),
+        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'p',
           null,
           this.props.post.message
         ),
-        _react2.default.createElement('hr', null),
+        _react2.default.createElement('hr', { className: 'dashed' }),
         _react2.default.createElement(
-          'div',
-          null,
-          this.props.post.comment && _react2.default.createElement(
-            'h5',
+          'ul',
+          { className: 'replylist list-group' },
+          _react2.default.createElement(
+            'li',
             null,
-            'Responses'
+            _react2.default.createElement(
+              'h5',
+              null,
+              _react2.default.createElement(
+                'strong',
+                null,
+                'Responses'
+              )
+            )
+          ),
+          this.props.post.comments.length === 0 && _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'div',
+              { className: 'no-reply' },
+              _react2.default.createElement(
+                'span',
+                { className: 'no-post-message' },
+                'There are currently no replies...add one!'
+              )
+            )
           ),
           this.props.post.comments && this.props.post.comments.map(function (comment) {
             return _react2.default.createElement(
               'li',
-              { className: 'list-group-item', key: comment.id },
+              { className: 'list-group-item reply', key: comment.id },
               _react2.default.createElement(
                 'h4',
                 null,
@@ -20907,18 +20937,17 @@ var Post = function (_Component) {
                 'h5',
                 null,
                 comment.message
-              ),
-              _react2.default.createElement('hr', null)
+              )
             );
           })
         ),
-        _react2.default.createElement('hr', null),
+        _react2.default.createElement('hr', { className: 'solid' }),
         _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
             'div',
-            { className: 'panel panel-default' },
+            null,
             _react2.default.createElement(_FormErrors2.default, { formErrors: this.state.formErrors })
           ),
           _react2.default.createElement(
@@ -20929,47 +20958,65 @@ var Post = function (_Component) {
               null,
               _react2.default.createElement(
                 'div',
-                { className: 'form-group' },
+                { className: 'reply-content' },
                 _react2.default.createElement(
-                  'lable',
-                  { className: 'col-xs-8 form-control-label' },
-                  'Reply Message'
+                  'div',
+                  { className: 'form-group no-margin' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-xs-8 form-control-label' },
+                    'Reply Message'
+                  ),
+                  _react2.default.createElement('input', {
+                    className: 'form-control',
+                    type: 'text',
+                    name: 'message',
+                    onChange: this.handleUserInput,
+                    value: this.state.message,
+                    required: 'true'
+                  })
                 ),
-                _react2.default.createElement('input', {
-                  className: 'form-control',
-                  type: 'text',
-                  name: 'message',
-                  onChange: this.handleUserInput,
-                  value: this.state.message,
-                  required: 'true'
-                })
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group no-margin' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-xs-4 form-control-label' },
+                    'Reply User'
+                  ),
+                  _react2.default.createElement('input', {
+                    className: 'form-control',
+                    type: 'text',
+                    name: 'user',
+                    onChange: this.handleUserInput,
+                    value: this.state.user,
+                    required: 'true'
+                  })
+                )
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'form-group' },
-                _react2.default.createElement(
-                  'lable',
-                  { className: 'col-xs-4 form-control-label' },
-                  'Reply User'
-                ),
-                _react2.default.createElement('input', {
-                  className: 'form-control',
-                  type: 'text',
-                  name: 'user',
-                  onChange: this.handleUserInput,
-                  value: this.state.user,
-                  required: 'true'
-                })
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
+                { className: 'reply-button' },
                 _react2.default.createElement(
                   'button',
-                  { type: 'submit', disabled: this.state.disabled },
+                  { 'class': 'reply-post', type: 'submit', disabled: this.state.disabled },
                   'Post Reply'
                 )
               )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'back-to-posts-div' },
+          _react2.default.createElement('hr', { className: 'solid' }),
+          _react2.default.createElement(
+            'button',
+            { className: 'back-to-posts-button' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/posts' },
+              'Back to Posts'
             )
           )
         )
@@ -21028,52 +21075,96 @@ var Posts = function Posts(_ref) {
       selectPost = _ref.selectPost;
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'message-board' },
     _react2.default.createElement(
       'h2',
-      null,
+      { className: 'text-center' },
       'The Fairygodboss Message Board'
     ),
-    posts.length === 0 && _react2.default.createElement(
-      'h4',
-      null,
-      'There are currently no posts...add one!'
-    ),
-    posts && posts.map(function (post) {
-      return _react2.default.createElement(
+    _react2.default.createElement(
+      'ul',
+      { className: 'postlist list-group' },
+      posts.length === 0 && _react2.default.createElement(
         'li',
-        { className: 'list-group-item', key: post.id },
+        null,
         _react2.default.createElement(
-          'h4',
-          null,
-          post.title + ' ' + post.message
-        ),
-        _react2.default.createElement(
-          'h5',
-          null,
-          'Posted By: ' + post.user
-        ),
+          'div',
+          { className: 'no-post' },
+          _react2.default.createElement(
+            'span',
+            { className: 'no-post-message' },
+            'There are currently no posts...add one!'
+          )
+        )
+      ),
+      posts && posts.map(function (post) {
+        return _react2.default.createElement(
+          'li',
+          { className: 'list-group-item post', key: post.id },
+          _react2.default.createElement(
+            'div',
+            { className: 'post-item' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h4',
+                { className: 'title' },
+                post.title + ': '
+              ),
+              _react2.default.createElement(
+                'h4',
+                { className: 'message' },
+                post.message
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'user' },
+              'Posted By: ' + post.user
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'comments' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/posts/' + post.id, onClick: function onClick() {
+                    return selectPost(post);
+                  } },
+                post.comments.length + ' Comments'
+              )
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'updated-time' },
+              'Last Update: ' + post.updatedTime
+            )
+          ),
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/posts/' + post.id, onClick: function onClick() {
+                  return selectPost(post);
+                } },
+              _react2.default.createElement('div', { className: 'triangle-right' })
+            )
+          )
+        );
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      { 'class': 'post-div' },
+      _react2.default.createElement(
+        'button',
+        { 'class': 'post-button' },
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/posts/' + post.id, onClick: function onClick() {
-              return selectPost(post);
-            } },
-          post.comments.length + ' Comments'
-        ),
-        _react2.default.createElement(
-          'h5',
-          null,
-          'Last Update: ' + post.updatedTime
+          { to: '/new-post' },
+          'Create new post'
         )
-      );
-    }),
-    _react2.default.createElement(
-      'button',
-      null,
-      _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/new-post' },
-        'Create new post'
       )
     )
   );

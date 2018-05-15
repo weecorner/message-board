@@ -84,37 +84,43 @@ class Post extends Component {
 
     return (
       <div>
-        <h4>{`${this.props.post.title} ${this.props.post.message}`}</h4>
-        <h5>{`By: ${this.props.post.user}`}</h5><h5>{` On: ${this.props.post.createdTime}`}</h5>
-        <button><Link to="/posts">Back to Posts</Link></button>
+        <h2 className="title">{this.props.post.title}</h2>
+        <div>
+          <h5 className="message">{`By: ${this.props.post.user}`}</h5>
+          <h5 className="created-time">{` On: ${this.props.post.createdTime}`}</h5>
+          <button className="back-to-posts"><Link to="/posts">Back to Posts</Link></button>
+        </div>
+        <br />
         <p>
           {this.props.post.message}
         </p>
-        <hr />
-        <div>
+        <hr className="dashed" />
+        <ul className="replylist list-group">
+          <li><h5><strong>Responses</strong></h5></li>
           {
-            this.props.post.comment && 
-            <h5>Responses</h5>
+            this.props.post.comments.length === 0 && 
+            <li><div className="no-reply"><span className="no-post-message">There are currently no replies...add one!</span></div></li>
           }
           {
-            this.props.post.comments && this.props.post.comments.map(comment => (
-              <li className="list-group-item" key={comment.id}>
+            this.props.post.comments && 
+            this.props.post.comments.map(comment => (
+              <li className="list-group-item reply" key={comment.id}>
                 <h4>{`${comment.user}:`}</h4>
                 <h5>{comment.message}</h5>
-                <hr/>
               </li>
             ))
           }
-        </div>
-        <hr />
+        </ul>
+        <hr className="solid"/>
         <div>
-          <div className="panel panel-default">
+          <div>
             <FormErrors formErrors={this.state.formErrors} />
           </div>
           <form className="form-horizontal" onSubmit = {this.handleSubmit}>
             <fieldset>
-              <div className="form-group">
-                <lable className="col-xs-8 form-control-label">Reply Message</lable>
+            <div className="reply-content">
+              <div className="form-group no-margin">
+                <label className="col-xs-8 form-control-label">Reply Message</label>
                 <input
                   className="form-control"
                   type="text"
@@ -124,8 +130,8 @@ class Post extends Component {
                   required="true"
                 />
               </div>
-              <div className="form-group">
-                <lable className="col-xs-4 form-control-label">Reply User</lable>
+              <div className="form-group no-margin">
+                <label className="col-xs-4 form-control-label">Reply User</label>
                 <input
                   className="form-control"
                   type="text"
@@ -135,11 +141,16 @@ class Post extends Component {
                   required="true"
                 />
               </div>
-              <div>
-                <button type='submit' disabled={this.state.disabled}>Post Reply</button>
+              </div>
+              <div className='reply-button'>
+                <button class = 'reply-post' type='submit' disabled={this.state.disabled}>Post Reply</button>
               </div>
             </fieldset>
           </form>
+        </div>
+        <div className="back-to-posts-div">
+          <hr className="solid" />
+          <button className="back-to-posts-button"><Link to="/posts">Back to Posts</Link></button>
         </div>
       </div>
       )
