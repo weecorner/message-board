@@ -4,6 +4,9 @@
   "private": true,
   "description": "A simple message board.",
   "main": "index.js",
+  "engines": {
+    "node": ">= 7.0.0"
+  },
   "scripts": {
     "test": "mocha ./app/components/*.test.jsx --watch --compilers js:babel-register",
     "build": "webpack",
