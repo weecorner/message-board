@@ -47,8 +47,8 @@ class Post extends Component {
     let fieldValid = this.state.fieldValid;
     let formDisabled = this.state.disabled;
 
-    fieldValid = value.length < 10 ;
-    fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 10 characters';
+    fieldValid = value.length < 30 ;
+    fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 30 characters';
     formDisabled = Object.keys(fieldValidationErrors).every((fieldName, i) => {
       return fieldValidationErrors[fieldName].length === 0;
     });
@@ -84,16 +84,18 @@ class Post extends Component {
 
     return (
       <div>
-        <h2 className="title">{this.props.post.title}</h2>
-        <div>
-          <h5 className="message">{`By: ${this.props.post.user}`}</h5>
-          <h5 className="created-time">{` On: ${this.props.post.createdTime}`}</h5>
-          <button className="back-to-posts"><Link to="/posts">Back to Posts</Link></button>
+        <div className="post-detail">
+          <h2 className="title">{this.props.post.title}</h2>
+          <div>
+            <h5 className="message">{`By: ${this.props.post.user}`}</h5>
+            <h5 className="created-time">{` On: ${this.props.post.createdTime}`}</h5>
+            <button className="back-to-posts"><Link to="/posts">Back to Posts</Link></button>
+          </div>
+          <br />
+          <p>
+            {this.props.post.message}
+          </p>
         </div>
-        <br />
-        <p>
-          {this.props.post.message}
-        </p>
         <hr className="dashed" />
         <ul className="replylist list-group">
           <li><h5><strong>Responses</strong></h5></li>
@@ -106,7 +108,7 @@ class Post extends Component {
             this.props.post.comments.map(comment => (
               <li className="list-group-item reply" key={comment.id}>
                 <h4>{`${comment.user}:`}</h4>
-                <h5>{comment.message}</h5>
+                <p>{comment.message}</p>
               </li>
             ))
           }
@@ -120,7 +122,7 @@ class Post extends Component {
             <fieldset>
             <div className="reply-content">
               <div className="form-group no-margin">
-                <label className="col-xs-8 form-control-label">Reply Message</label>
+                <label className="form-control-label reply-label">Reply Message</label>
                 <input
                   className="form-control"
                   type="text"
@@ -131,7 +133,7 @@ class Post extends Component {
                 />
               </div>
               <div className="form-group no-margin">
-                <label className="col-xs-4 form-control-label">Reply User</label>
+                <label className="form-control-label reply-label">Reply User</label>
                 <input
                   className="form-control"
                   type="text"

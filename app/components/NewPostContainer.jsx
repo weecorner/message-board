@@ -47,8 +47,8 @@ class NewPost extends Component {
     let fieldValid = this.state.fieldValid;
     let formDisabled = this.state.disabled;
 
-    fieldValid = value.length < 10 ;
-    fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 10 characters';
+    fieldValid = value.length < 30 ;
+    fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 30 characters';
     formDisabled = Object.keys(fieldValidationErrors).every((fieldName, i) => {
       return fieldValidationErrors[fieldName].length === 0;
     });

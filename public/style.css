@@ -4,29 +4,43 @@ html, body, #main {
   background:rgba(255,255,255,0.5);
 }
 
-.container {
+.container-fluid {
   margin: auto;
-  width: 90%;
-  height: 90%;
-  border: 2px solid lightgrey;
-  padding: 20px;
+  border: 4px solid lightgrey;
+  padding: 30px;
   margin: 20px;
+  overflow: scroll;
+}
+
+legend {
+  font-size: 28px;
+  margin-bottom: 0;
+  text-align: center;
+  border: none;
 }
 
 .message-board {
   height: 100%;
-  padding: 10px;
 }
 
 button {
-  border: 2px solid lightgrey;
-  width: 10em;
+  border: 4px solid lightgrey;
+  width: 9em;
   background-color: #eff0f1;
+  height: 3em;
+}
+
+.clear-button {
+  float: left;
+}
+
+.create-button {
+  float: right;
 }
 
 .no-post {
-  height: 45vh;
-  line-height: 45vh;
+  height: 50vh;
+  line-height: 50vh;
   text-align: center;
 }
 
@@ -37,7 +51,7 @@ button {
 }
 
 .postlist {
-  height: 45vh;
+  height: 50vh;
 }
 
 .replylist {
@@ -52,12 +66,13 @@ button {
 
 .post {
   margin: 3vh 2vw;
-  border: 2px solid lightgrey;
+  border: 4px solid lightgrey;
   min-height: 6em;
 }
 
 .user {
   float: left;
+  font-size: 
 }
 
 .title {
@@ -69,12 +84,8 @@ button {
   display: inline;
 }
 
-.post-div {
-  height: 25vh;
-}
-
 .post-button {
-  margin-top: 7em;
+  margin-top: 2em;
 }
 
 a {
@@ -91,21 +102,20 @@ a {
   font-weight: bold;
 }
 
-legend {
-  text-align: center;
-  border: none;
+.form-control {
+  font-size: 22px;
+}
+
+input.form-control  {
+  height: 2em;
 }
 
 .form-horizontal .form-group {
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .form-control {
-  border: 2px solid lightgrey;
-}
-
-.button-div {
-  margin-top: 12vh;
+  border: 4px solid lightgrey;
 }
 
 a:hover, a:visited, a:link, a:active {
@@ -113,7 +123,7 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .reply {
-  border: 2px lightgrey;
+  border: 4px lightgrey;
   border-style: dashed none none none;
 }
 
@@ -128,20 +138,87 @@ li.list-group-item.reply:nth-child(2) {
 }
 
 .list-group.postlist {
-  max-height: 45vh;
+  max-height: 50vh;
   overflow: scroll;
   margin-bottom: 0;
 }
 
 hr.solid {
-  border-top: 2px solid lightgrey;
+  border-top: 4px solid lightgrey;
 }
 
 hr.dashed {
-  border-top: 2px dashed lightgrey;
+  border-top: 4px dashed lightgrey;
 }
 
-@media(min-width: 992px) {
+.form-control-label.reply-label {
+  text-align: left;
+}
+
+.post-div {
+  height: 15vh;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.list-group.replylist, .post-detail {
+  height: 25vh;
+}
+
+.reply-button {
+    width: 100%;
+    margin-top: 1.5em;
+  }
+
+.back-to-posts-button {
+  width: 100%;
+}
+
+.reply-post {
+  width: 100%;
+}
+
+.back-to-posts {
+  display: none;
+}
+
+.triangle-right {
+  display: none;
+}
+
+.postlist.list-group {
+  height: 50vh;
+  max-height: 50vh;
+}
+
+.warning {
+  height: 5vh;
+}
+
+.comments {
+  float: right;
+}
+
+.updated-time {
+  display: none;
+}
+
+.form-control-label {
+  text-align: center;
+  width: 100%;
+}
+
+.form-group.no-margin {
+  margin: 0;
+}
+
+
+@media(min-width: 994px) {
+
+  .message-board {
+    padding: 10px;
+  }
+
   .comments {
     padding-left: 2em;
   }
@@ -173,13 +250,13 @@ hr.dashed {
 
   .reply-content {
     display: inline-block;
-    width: 50%;
+    width: 70%;
   }
 
   .reply-button {
     display: inline-block;
-    width: 50%;
-    text-align: center;
+    width: 30%;
+    text-align: right;
   }
 
   div.back-to-posts-div {
@@ -200,61 +277,48 @@ hr.dashed {
     display: inline-block;
     width: 87%;
   }
-}
 
-@media(max-width: 991px) {
-  .comments {
-    float: right;
+  .postlist.list-group {
+    height: 50vh;
+    max-height: 50vh;
   }
 
-  .updated-time {
-    display: none;
+  .warning {
+    height: 5vh;
   }
 
-  .post-div {
-    text-align: center;
+  .list-group.replylist, .post-detail {
+    height: 15vh;
   }
 
-  .form-control-label {
-    text-align: center;
-    width: 100%;
-  }
-
-  .clear-button {
-    float: left;
-  }
-
-  .create-button {
-    float: right;
-  }
-
-  .form-group.no-margin {
-    margin: 0;
-  }
-
-  .list-group.replylist {
-    max-height: 10vh;
-  }
-
-  .reply-button {
-    width: 100%;
-    margin-top: 1.5em;
-  }
-
-  .back-to-posts-button {
-    width: 100%;
+  .form-horizontal .form-group {
+    margin: 30px 0;
   }
 
   .reply-post {
-    width: 100%;
+    width: 80%;
   }
 
   .back-to-posts {
-    display: none;
-  }
-
-  .triangle-right {
-    display: none;
+    display: inline-block;
   }
 }
 
+@media(max-width: 991px) and (min-width: 768px) {
+
+  .message-board {
+    padding: 10px;
+  }
+
+  .list-group.replylist, .post-detail {
+    height: 15vh;
+  }
+
+  .form-horizontal .form-group {
+    margin: 30px 0;
+  }
+
+  button {
+    width: 10em;
+  }
+}

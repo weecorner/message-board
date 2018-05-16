@@ -5,7 +5,7 @@ import PostContainer from './PostContainer'
 import NewPostContainer from './NewPostContainer'
 
 const App = () => (
-  <div className="container">
+  <div className="container-fluid">
     <Switch>
       <Route exact path='/posts' component={PostsContainer} />
       <Route path='/posts/:id' component={PostContainer} />

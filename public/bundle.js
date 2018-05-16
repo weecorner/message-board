@@ -6633,8 +6633,8 @@ var NewPost = function (_Component) {
       var fieldValid = this.state.fieldValid;
       var formDisabled = this.state.disabled;
 
-      fieldValid = value.length < 10;
-      fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 10 characters';
+      fieldValid = value.length < 30;
+      fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 30 characters';
       formDisabled = Object.keys(fieldValidationErrors).every(function (fieldName, i) {
         return fieldValidationErrors[fieldName].length === 0;
       });
@@ -20633,7 +20633,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
   return _react2.default.createElement(
     'div',
-    { className: 'container' },
+    { className: 'container-fluid' },
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
@@ -20820,8 +20820,8 @@ var Post = function (_Component) {
       var fieldValid = this.state.fieldValid;
       var formDisabled = this.state.disabled;
 
-      fieldValid = value.length < 10;
-      fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 10 characters';
+      fieldValid = value.length < 30;
+      fieldValidationErrors[fieldName] = fieldValid ? '' : ' must be less than 30 characters';
       formDisabled = Object.keys(fieldValidationErrors).every(function (fieldName, i) {
         return fieldValidationErrors[fieldName].length === 0;
       });
@@ -20861,38 +20861,42 @@ var Post = function (_Component) {
         'div',
         null,
         _react2.default.createElement(
-          'h2',
-          { className: 'title' },
-          this.props.post.title
-        ),
-        _react2.default.createElement(
           'div',
-          null,
+          { className: 'post-detail' },
           _react2.default.createElement(
-            'h5',
-            { className: 'message' },
-            'By: ' + this.props.post.user
+            'h2',
+            { className: 'title' },
+            this.props.post.title
           ),
           _react2.default.createElement(
-            'h5',
-            { className: 'created-time' },
-            ' On: ' + this.props.post.createdTime
-          ),
-          _react2.default.createElement(
-            'button',
-            { className: 'back-to-posts' },
+            'div',
+            null,
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/posts' },
-              'Back to Posts'
+              'h5',
+              { className: 'message' },
+              'By: ' + this.props.post.user
+            ),
+            _react2.default.createElement(
+              'h5',
+              { className: 'created-time' },
+              ' On: ' + this.props.post.createdTime
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'back-to-posts' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/posts' },
+                'Back to Posts'
+              )
             )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'p',
+            null,
+            this.props.post.message
           )
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'p',
-          null,
-          this.props.post.message
         ),
         _react2.default.createElement('hr', { className: 'dashed' }),
         _react2.default.createElement(
@@ -20934,7 +20938,7 @@ var Post = function (_Component) {
                 comment.user + ':'
               ),
               _react2.default.createElement(
-                'h5',
+                'p',
                 null,
                 comment.message
               )
@@ -20964,7 +20968,7 @@ var Post = function (_Component) {
                   { className: 'form-group no-margin' },
                   _react2.default.createElement(
                     'label',
-                    { className: 'col-xs-8 form-control-label' },
+                    { className: 'form-control-label reply-label' },
                     'Reply Message'
                   ),
                   _react2.default.createElement('input', {
@@ -20981,7 +20985,7 @@ var Post = function (_Component) {
                   { className: 'form-group no-margin' },
                   _react2.default.createElement(
                     'label',
-                    { className: 'col-xs-4 form-control-label' },
+                    { className: 'form-control-label reply-label' },
                     'Reply User'
                   ),
                   _react2.default.createElement('input', {
