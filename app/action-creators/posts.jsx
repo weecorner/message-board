@@ -27,7 +27,9 @@ export const addComment = comment => {
     const comments = selectedPost.comments;
     const newComments = comments.concat([comment]);
     const updatedTime = comment.replyTime;
+    //reply time of the latest comment will be the updated time of the post
     const newSelectedPost = Object.assign({}, selectedPost, {comments: newComments, updatedTime: updatedTime});
+    //update the post in posts with immutability
     const newPosts = [ ...getState().posts.slice(0, index), newSelectedPost, ...getState().posts.slice(index+1)];
     dispatch(receivePost(newSelectedPost));
     dispatch(receivePosts(newPosts));

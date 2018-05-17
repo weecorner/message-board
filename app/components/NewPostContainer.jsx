@@ -34,6 +34,8 @@ class NewPost extends Component {
     this.validateField = this.validateField.bind(this);
   }
 
+  // Share handleUserInput function and validation for all input fields to keep code DRY//
+
   handleUserInput(event) {
     const name = event.target.name;
     const value = event.target.value;
