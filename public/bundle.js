@@ -6177,7 +6177,9 @@ var addComment = exports.addComment = function addComment(comment) {
     var comments = selectedPost.comments;
     var newComments = comments.concat([comment]);
     var updatedTime = comment.replyTime;
+    //reply time of the latest comment will be the updated time of the post
     var newSelectedPost = Object.assign({}, selectedPost, { comments: newComments, updatedTime: updatedTime });
+    //update the post in posts with immutability
     var newPosts = [].concat(_toConsumableArray(getState().posts.slice(0, index)), [newSelectedPost], _toConsumableArray(getState().posts.slice(index + 1)));
     dispatch(receivePost(newSelectedPost));
     dispatch(receivePosts(newPosts));
@@ -8424,6 +8426,8 @@ var NewPost = function (_Component) {
     _this.validateField = _this.validateField.bind(_this);
     return _this;
   }
+
+  // Share handleUserInput function and validation for all input fields to keep code DRY//
 
   _createClass(NewPost, [{
     key: 'handleUserInput',
@@ -43495,7 +43499,7 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || _redux.compose;
 exports.default = (0, _redux.createStore)(_postsReducer2.default, composeEnhancers((0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger.createLogger)({ collapsed: true }))));
 
 /***/ }),
@@ -43763,10 +43767,10 @@ var Posts = function Posts(_ref) {
     ),
     _react2.default.createElement(
       'div',
-      { 'class': 'post-div' },
+      { className: 'post-div' },
       _react2.default.createElement(
         'button',
-        { 'class': 'post-button' },
+        { className: 'post-button' },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: '/new-post' },

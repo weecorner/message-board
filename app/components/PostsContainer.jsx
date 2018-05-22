@@ -40,8 +40,8 @@ const Posts = ({ posts, selectPost }) => (
       ))
     }
     </ul>
-    <div class="post-div">
-      <button class="post-button"><Link to="/new-post">Create new post</Link></button>
+    <div className="post-div">
+      <button className="post-button"><Link to="/new-post">Create new post</Link></button>
     </div>
   </div>
 );

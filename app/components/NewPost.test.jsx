@@ -5,7 +5,7 @@ import {shallow} from 'enzyme'
 import {spy} from 'sinon'
 chai.use(require('sinon-chai'))
 
-import {NewPostContainer} from './NewPostContainer'
+import NewPostContainer from './NewPostContainer'
 
 describe('<NewPostContainer />', () => {
   let root
